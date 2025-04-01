@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Race - Type Racer Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <h2>Quick Race</h2>
+        <div class="nav-buttons">
+            <button>Home</button>
+            <button>Leaderboard</button>
+            <button>Settings</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="game-area">
+        <h1>Quick Race</h1>
+
+        <!-- Scoreboard -->
+        <section class="scoreboard">
+            <h3>Live Players</h3>
+            <ul>
+                <li>Player1 - 45 WPM</li>
+                <li>Player2 - 52 WPM</li>
+                <li>Player3 - 38 WPM</li>
+                <li>Player4 - 60 WPM</li>
+            </ul>
+        </section>
+
+        <!-- Rocket Animation -->
+        <div class="rocket-container">
+            <img src="rocket.png" id="rocket" alt="Rocket">
+        </div>
+
+        <!-- Race Progress & WPM Display -->
+        <div class="progress-section">
+            <div class="progress-info">
+                <p id="progressTitle">Race Progress</p>
+                <p id="wpmDisplay">WPM: 0</p>
+            </div>
+            <div class="progress-bar-container">
+                <div id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- Sentence Display -->
+        <div id="sentenceContainer"></div>
+
+        <!-- Typing Input -->
+        <textarea id="userInput" placeholder="Start typing here..."></textarea>
+
+        <!-- Restart Button -->
+        <button id="restartBtn">Restart</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #1a1a1a;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+nav h2 {
+    color: #fff;
+    margin: 0;
+}
+
+.nav-buttons button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.nav-buttons button:hover {
+    background-color: #666;
+}
+
+/* Game Area */
+.game-area {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    max-width: 800px;
+}
+
+/* Scoreboard */
+.scoreboard {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.scoreboard h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #00ff88;
+}
+
+.scoreboard ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.scoreboard li {
+    padding: 5px;
+    font-size: 16px;
+    color: white;
+}
+
+/* Rocket Container */
+.rocket-container {
+    position: relative;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+/* Rocket Image */
+#rocket {
+    width: 50px;
+    position: absolute;
+    bottom: 0;
+    transition: bottom 0.2s ease-in-out;
+}
+
+/* Progress Bar Section */
+.progress-section {
+    margin: 20px 0;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: #555;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#progressBar {
+    width: 0%;
+    height: 100%;
+    background-color: lime;
+    transition: width 0.2s ease-in-out;
+}
+
+/* Sentence Container */
+#sentenceContainer {
+    font-size: 22px;
+    margin: 20px 0;
+}
+
+#sentenceContainer span {
+    padding: 2px;
+}
+
+.correct {
+    color: lime;
+}
+
+.incorrect {
+    color: red;
+}
+
+/* Input Field */
+#userInput {
+    width: 100%;
+    height: 80px;
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* Restart Button */
+#restartBtn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#restartBtn:hover {
+    background-color: #666;
+}
