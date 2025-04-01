@@ -3,62 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Race - Type Racer Game</title>
+    <title>SpeedType Racer - Quick Race</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
     <!-- Navigation Bar -->
-    <nav>
-        <h2>Quick Race</h2>
-        <div class="nav-buttons">
-            <button>Home</button>
-            <button>Leaderboard</button>
-            <button>Settings</button>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-keyboard"></i>
+            <span>SpeedType Racer</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="race.html" class="active"><i class="fas fa-flag-checkered"></i> Race</a>
+            <a href="#"><i class="fas fa-trophy"></i> Leaderboard</a>
+            <a href="#"><i class="fas fa-chart-line"></i> Stats</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        </div>
+        <div class="theme-toggle">
+            <i class="fas fa-sun"></i>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="game-area">
-        <h1>Quick Race</h1>
+    <!-- Main Content with Sidebar -->
+    <div class="content-container">
+        <!-- Sidebar with Scoreboard -->
+        <aside class="sidebar">
+            <section class="scoreboard">
+                <h3><i class="fas fa-users"></i> Live Players</h3>
+                <ul>
+                    <li><i class="fas fa-user"></i> Player1 - 45 WPM</li>
+                    <li><i class="fas fa-user"></i> Player2 - 52 WPM</li>
+                    <li><i class="fas fa-user"></i> Player3 - 38 WPM</li>
+                    <li><i class="fas fa-user"></i> Player4 - 60 WPM</li>
+                </ul>
+            </section>
+        </aside>
 
-        <!-- Scoreboard -->
-        <section class="scoreboard">
-            <h3>Live Players</h3>
-            <ul>
-                <li>Player1 - 45 WPM</li>
-                <li>Player2 - 52 WPM</li>
-                <li>Player3 - 38 WPM</li>
-                <li>Player4 - 60 WPM</li>
-            </ul>
-        </section>
+        <!-- Main Game Area -->
+        <main class="game-area">
+            <h1>Quick Race</h1>
 
-        <!-- Rocket Animation -->
-        <div class="rocket-container">
-            <img src="rocket.png" id="rocket" alt="Rocket">
-        </div>
-
-        <!-- Race Progress & WPM Display -->
-        <div class="progress-section">
-            <div class="progress-info">
-                <p id="progressTitle">Race Progress</p>
-                <p id="wpmDisplay">WPM: 0</p>
+            <!-- Rocket Animation -->
+            <div class="rocket-container">
+                <img src="rocket.png" id="rocket" alt="Rocket">
             </div>
-            <div class="progress-bar-container">
-                <div id="progressBar"></div>
+
+            <!-- Race Progress & WPM Display -->
+            <div class="progress-section">
+                <div class="progress-info">
+                    <p id="progressTitle"><i class="fas fa-tachometer-alt"></i> Race Progress</p>
+                    <p id="wpmDisplay"><i class="fas fa-keyboard"></i> WPM: 0</p>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="progressBar"></div>
+                </div>
             </div>
-        </div>
 
-        <!-- Sentence Display -->
-        <div id="sentenceContainer"></div>
+            <!-- Sentence Display -->
+            <div id="sentenceContainer" class="sentence-container"></div>
 
-        <!-- Typing Input -->
-        <textarea id="userInput" placeholder="Start typing here..."></textarea>
+            <!-- Typing Input -->
+            <textarea id="userInput" placeholder="Start typing here..."></textarea>
 
-        <!-- Restart Button -->
-        <button id="restartBtn">Restart</button>
-    </main>
+            <!-- Restart Button -->
+            <button id="restartBtn" class="btn primary"><i class="fas fa-redo"></i> Restart</button>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SpeedType Racer. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
+

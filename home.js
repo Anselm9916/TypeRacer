@@ -25,9 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     body.classList.remove("dark")
     themeToggle.innerHTML = '<i class="fas fa-sun"></i>'
   }
-
-  // Load first sentence
-  loadSentence()
 })
 
 // Theme Toggle Functionality
@@ -44,6 +41,38 @@ themeToggle.addEventListener("click", () => {
     localStorage.setItem("theme", "light")
   }
 })
+
+// Animate cards on scroll
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".card")
+
+  // Simple animation for cards
+  setTimeout(() => {
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.style.opacity = "1"
+        card.style.transform = "translateY(0)"
+      }, index * 200)
+    })
+  }, 500)
+})
+
+// Add hover effect to buttons
+const buttons = document.querySelectorAll(".btn")
+buttons.forEach((button) => {
+  button.addEventListener("mouseenter", () => {
+    button.style.transform = "translateY(-5px)"
+  })
+
+  button.addEventListener("mouseleave", () => {
+    button.style.transform = "translateY(0)"
+  })
+})
+
+// Update copyright year
+const currentYear = new Date().getFullYear()
+const footerYear = document.querySelector("footer p")
+footerYear.textContent = footerYear.textContent.replace("2025", currentYear)
 
 // Fetch a random sentence from Advice Slip API
 async function fetchSentence() {
@@ -72,7 +101,7 @@ async function loadSentence() {
   // Reset everything
   userInput.value = ""
   progressBar.style.width = "0%"
-  wpmDisplay.innerHTML = '<i class="fas fa-keyboard"></i> WPM: 0'
+  wpmDisplay.textContent = "WPM: 0"
   rocket.style.bottom = "0px"
 
   startTime = null
@@ -102,7 +131,7 @@ function updateWPM() {
   const correctWords = calculateCorrectWords()
   const minutes = elapsedSeconds / 60
   const wpm = minutes > 0 ? Math.round(correctWords / minutes) : 0
-  wpmDisplay.innerHTML = `<i class="fas fa-keyboard"></i> WPM: ${wpm}`
+  wpmDisplay.textContent = `WPM: ${wpm}`
 }
 
 // Start Timer
@@ -163,10 +192,6 @@ restartBtn.addEventListener("click", () => {
   loadSentence()
 })
 
-// Update copyright year
-const currentYear = new Date().getFullYear()
-const footerYear = document.querySelector("footer p")
-if (footerYear) {
-  footerYear.textContent = footerYear.textContent.replace("2025", currentYear)
-}
+// Load First Sentence
+window.addEventListener("DOMContentLoaded", loadSentence)
 
