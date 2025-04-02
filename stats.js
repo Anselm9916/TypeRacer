@@ -1,4 +1,4 @@
-import { Chart } from "@/components/ui/chart"
+// import { Chart } from "@/components/ui/chart"
 // DOM Elements
 const themeToggle = document.querySelector(".theme-toggle")
 const body = document.body
@@ -78,7 +78,7 @@ function initCharts() {
 
   // Recent Performance Chart
   const recentPerformanceCtx = document.getElementById("recentPerformanceChart")
-  if (recentPerformanceCtx) {
+  if (recentPerformanceCtx && typeof Chart !== "undefined") {
     // Destroy existing chart if it exists
     if (window.recentPerformanceChart) {
       window.recentPerformanceChart.destroy()
@@ -140,7 +140,7 @@ function initCharts() {
 
   // WPM Progress Chart
   const wpmProgressCtx = document.getElementById("wpmProgressChart")
-  if (wpmProgressCtx) {
+  if (wpmProgressCtx && typeof Chart !== "undefined") {
     // Destroy existing chart if it exists
     if (window.wpmProgressChart) {
       window.wpmProgressChart.destroy()
@@ -195,7 +195,7 @@ function initCharts() {
 
   // Accuracy Progress Chart
   const accuracyProgressCtx = document.getElementById("accuracyProgressChart")
-  if (accuracyProgressCtx) {
+  if (accuracyProgressCtx && typeof Chart !== "undefined") {
     // Destroy existing chart if it exists
     if (window.accuracyProgressChart) {
       window.accuracyProgressChart.destroy()
