@@ -194,4 +194,3 @@ restartBtn.addEventListener("click", () => {
 
 // Load First Sentence
 window.addEventListener("DOMContentLoaded", loadSentence)
-

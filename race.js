@@ -9,7 +9,7 @@ const userInput = document.getElementById("userInput")
 const restartBtn = document.getElementById("restartBtn")
 const progressBar = document.getElementById("progressBar")
 const wpmDisplay = document.getElementById("wpmDisplay")
-const rocket = document.getElementById("rocket")
+const car = document.getElementById("car")
 const themeToggle = document.querySelector(".theme-toggle")
 const body = document.body
 
@@ -73,7 +73,7 @@ async function loadSentence() {
   userInput.value = ""
   progressBar.style.width = "0%"
   wpmDisplay.innerHTML = '<i class="fas fa-keyboard"></i> WPM: 0'
-  rocket.style.bottom = "0px"
+  car.style.left = "0px"
 
   startTime = null
   if (timer) {
@@ -148,10 +148,10 @@ userInput.addEventListener("input", () => {
   const progress = (userText.length / currentSentence.length) * 100
   progressBar.style.width = `${Math.min(progress, 100)}%`
 
-  // Move Rocket 🚀
-  const maxHeight = 120
-  const rocketPosition = (progress / 100) * maxHeight
-  rocket.style.bottom = `${rocketPosition}px`
+  // Move Car 🚗
+  const trackWidth = document.querySelector(".race-track").offsetWidth - car.offsetWidth
+  const carPosition = (progress / 100) * trackWidth
+  car.style.left = `${carPosition}px`
 
   if (userText.length >= currentSentence.length) {
     finishSentence()

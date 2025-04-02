@@ -912,78 +912,249 @@ footer {
   cursor: not-allowed;
 }
 
-/* Responsive Design */
-@media (max-width: 900px) {
-  .feature-cards {
-    flex-direction: column;
-    padding: 0 1rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  .profile-summary {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .profile-info {
-    width: 100%;
-  }
-
-  .profile-stats {
-    justify-content: center;
-  }
-
-  .rank-timeline {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .rank-timeline::before {
-    width: 2px;
-    height: 100%;
-    left: 50%;
-    top: 0;
-  }
+/* Multiplayer Race Page Styles */
+.multiplayer-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  flex: 1;
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    gap: 1rem;
-  }
+.multiplayer-container h1 {
+  text-align: center;
+  color: #0c4a6e;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-size: 2.5rem;
+}
 
-  .nav-links {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+/* Tab Container */
+.tab-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
 
-  .action-buttons {
-    flex-direction: column;
-  }
+.tab-buttons {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-  .content-container {
-    flex-direction: column;
-  }
+.tab-buttons button {
+  flex: 1;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #0c4a6e;
+  cursor: pointer;
+  transition: all 0.3s;
+}
 
-  .sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
+.tab-buttons button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
-  .game-area {
-    padding: 1rem;
-  }
+.tab-buttons button.active {
+  background: rgba(255, 255, 255, 0.3);
+  color: #0c4a6e;
+  font-weight: 600;
+}
 
-  .time-tabs,
-  .stats-tabs {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+.tab-content-container {
+  padding: 2rem;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Join Race Form */
+.join-form h2,
+.create-form h2 {
+  color: #0c4a6e;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #0c4a6e;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #0c4a6e;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: #0c4a6e;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #0c4a6e;
+}
+
+/* Action Button */
+.action-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #0c4a6e;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #083654;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Active Races */
+.active-races {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.active-races h2 {
+  color: #0c4a6e;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.no-races {
+  color: #0c4a6e;
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+.races-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.race-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.race-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.race-info {
+  flex: 1;
+}
+
+.race-info h3 {
+  color: #0c4a6e;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.race-details {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.race-details span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  color: #0c4a6e;
+  opacity: 0.8;
+}
+
+.join-btn {
+  min-width: 120px;
+}
+
+/* Difficulty Buttons */
+.difficulty-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.difficulty-btn {
+  flex: 1;
+  padding: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #0c4a6e;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.difficulty-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.difficulty-btn.active {
+  background-color: #0c4a6e;
+  color: white;
+  border-color: #0c4a6e;
 }
 
 /* Dark Mode */
@@ -1067,106 +1238,165 @@ body.dark footer {
   color: #cbd5e1;
 }
 
-body.dark .time-tabs,
-body.dark .leaderboard-content,
-body.dark .position-card,
-body.dark .profile-summary,
-body.dark .stats-tabs,
-body.dark .stats-content {
+body.dark .multiplayer-container h1 {
+  color: #f1f5f9;
+}
+
+body.dark .tab-container {
   background-color: rgba(15, 23, 42, 0.5);
 }
 
-body.dark .tab-btn,
-body.dark .stats-card-header h3,
-body.dark .profile-info h2,
-body.dark .rank-name,
-body.dark .stat-value,
-body.dark .recent-performance h3,
-body.dark .typing-patterns h3,
-body.dark .pattern-card h4,
-body.dark .rank-history h3,
-body.dark .improvement-tips h3,
-body.dark .tip-content h4,
-body.dark .achievement-content h4,
-body.dark .history-table th {
+body.dark .tab-buttons {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark .tab-buttons button {
+  background: rgba(15, 23, 42, 0.3);
   color: #f1f5f9;
 }
 
-body.dark .stats-card,
-body.dark .pattern-card,
-body.dark .chart-container,
-body.dark .rank-badge,
-body.dark .tip-card,
-body.dark .achievement-card,
-body.dark .filter-select,
-body.dark .pagination-btn {
-  background-color: rgba(15, 23, 42, 0.5);
+body.dark .tab-buttons button:hover {
+  background: rgba(15, 23, 42, 0.4);
 }
 
-body.dark .filter-select {
+body.dark .tab-buttons button.active {
+  background: rgba(15, 23, 42, 0.5);
+  color: #38bdf8;
+}
+
+body.dark .join-form h2,
+body.dark .create-form h2 {
   color: #f1f5f9;
 }
 
-body.dark .key {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #f1f5f9;
-}
-
-body.dark .key-speed {
-  color: #f1f5f9;
-}
-
-body.dark .achievement-date,
-body.dark .rank-date,
-body.dark .rank-next,
-body.dark .rank-title,
-body.dark .stat-label,
-body.dark .tip-content p {
+body.dark .subtitle {
   color: #cbd5e1;
 }
 
-body.dark .achievement-progress span,
-body.dark .pagination-info {
+body.dark .form-group label {
   color: #f1f5f9;
 }
 
-body.dark .time-label {
-  color: #f1f5f9;
-}
-
-body.dark .history-table td {
-  color: #f1f5f9;
-}
-
-body.dark .profile-avatar i {
-  color: #38bdf8;
-}
-
-body.dark .time-bar {
-  background-color: #38bdf8;
-}
-
-body.dark .rank-progress-bar {
-  background-color: #38bdf8;
-}
-
-body.dark .rank-milestone.achieved .rank-icon {
-  background-color: #38bdf8;
-}
-
-body.dark .tip-icon {
-  color: #38bdf8;
-}
-
-body.dark .achievement-card.achieved .achievement-icon {
-  color: #38bdf8;
-}
-
-body.dark .progress-bar {
-  background-color: #38bdf8;
-}
-
-body.dark .stat-row {
+body.dark .form-group input,
+body.dark .form-group select {
+  background-color: rgba(15, 23, 42, 0.5);
   border-color: rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+}
+
+body.dark .form-group input:focus,
+body.dark .form-group select:focus {
+  border-color: #38bdf8;
+}
+
+body.dark .action-btn {
+  background-color: #38bdf8;
+  color: #0f172a;
+}
+
+body.dark .action-btn:hover {
+  background-color: #0ea5e9;
+}
+
+body.dark .active-races {
+  background-color: rgba(15, 23, 42, 0.5);
+}
+
+body.dark .active-races h2 {
+  color: #f1f5f9;
+}
+
+body.dark .no-races {
+  color: #cbd5e1;
+}
+
+body.dark .race-card {
+  background-color: rgba(15, 23, 42, 0.5);
+}
+
+body.dark .race-info h3 {
+  color: #f1f5f9;
+}
+
+body.dark .race-details span {
+  color: #cbd5e1;
+}
+
+body.dark .difficulty-btn {
+  background-color: rgba(15, 23, 42, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+}
+
+body.dark .difficulty-btn:hover {
+  background-color: rgba(15, 23, 42, 0.7);
+}
+
+body.dark .difficulty-btn.active {
+  background-color: #38bdf8;
+  color: #0f172a;
+  border-color: #38bdf8;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .content-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .game-area {
+    padding: 1rem;
+  }
+
+  .time-tabs,
+  .stats-tabs {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tab-buttons {
+    flex-direction: column;
+  }
+
+  .difficulty-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .race-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .join-btn {
+    width: 100%;
+  }
+
+  .race-details {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
