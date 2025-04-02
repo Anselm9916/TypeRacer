@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedType Racer - Your Stats</title>
+    <link rel="stylesheet" href="stats.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-keyboard"></i>
+            <span>SpeedType Racer</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="race.html"><i class="fas fa-flag-checkered"></i> Race</a>
+            <a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
+            <a href="stats.html" class="active"><i class="fas fa-chart-line"></i> Stats</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        </div>
+        <div class="theme-toggle">
+            <i class="fas fa-sun"></i>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="stats-container">
+        <h1>Your Statistics</h1>
+        
+        <!-- User Profile Summary -->
+        <div class="profile-summary">
+            <div class="profile-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="profile-info">
+                <h2>YourUsername</h2>
+                <div class="rank-badge">
+                    <span class="rank-title">Current Rank</span>
+                    <span class="rank-name">Speed Demon</span>
+                    <div class="rank-progress">
+                        <div class="rank-progress-bar" style="width: 75%"></div>
+                    </div>
+                    <span class="rank-next">75% to next rank: Lightning Fingers</span>
+                </div>
+            </div>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-value">85</span>
+                    <span class="stat-label">Avg. WPM</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">92%</span>
+                    <span class="stat-label">Accuracy</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">142</span>
+                    <span class="stat-label">Total Races</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Stats Tabs -->
+        <div class="stats-tabs">
+            <button class="tab-btn active" data-tab="overview">
+                <i class="fas fa-home"></i> Overview
+            </button>
+            <button class="tab-btn" data-tab="progress">
+                <i class="fas fa-chart-line"></i> Progress
+            </button>
+            <button class="tab-btn" data-tab="achievements">
+                <i class="fas fa-award"></i> Achievements
+            </button>
+            <button class="tab-btn" data-tab="history">
+                <i class="fas fa-history"></i> Race History
+            </button>
+        </div>
+        
+        <!-- Stats Content -->
+        <div class="stats-content">
+            <!-- Overview Tab -->
+            <div class="tab-content active" id="overview">
+                <div class="stats-cards">
+                    <div class="stats-card">
+                        <div class="stats-card-header">
+                            <h3><i class="fas fa-tachometer-alt"></i> Speed Stats</h3>
+                        </div>
+                        <div class="stats-card-body">
+                            <div class="stat-row">
+                                <span class="stat-label">Average WPM</span>
+                                <span class="stat-value">85</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Highest WPM</span>
+                                <span class="stat-value">112</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Last 10 Races Avg.</span>
+                                <span class="stat-value">92</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Characters Per Minute</span>
+                                <span class="stat-value">425</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <div class="stats-card-header">
+                            <h3><i class="fas fa-bullseye"></i> Accuracy Stats</h3>
+                        </div>
+                        <div class="stats-card-body">
+                            <div class="stat-row">
+                                <span class="stat-label">Average Accuracy</span>
+                                <span class="stat-value">92%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Highest Accuracy</span>
+                                <span class="stat-value">98%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Error Rate</span>
+                                <span class="stat-value">8%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Perfect Races</span>
+                                <span class="stat-value">5</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <div class="stats-card-header">
+                            <h3><i class="fas fa-flag-checkered"></i> Race Stats</h3>
+                        </div>
+                        <div class="stats-card-body">
+                            <div class="stat-row">
+                                <span class="stat-label">Total Races</span>
+                                <span class="stat-value">142</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Races Won</span>
+                                <span class="stat-value">37</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Win Rate</span>
+                                <span class="stat-value">26%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Total Time Typing</span>
+                                <span class="stat-value">8h 24m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recent-performance">
+                    <h3>Recent Performance</h3>
+                    <div class="chart-container">
+                        <canvas id="recentPerformanceChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="typing-patterns">
+                    <h3>Typing Patterns</h3>
+                    <div class="patterns-grid">
+                        <div class="pattern-card">
+                            <h4>Fastest Keys</h4>
+                            <div class="key-list">
+                                <div class="key-item">
+                                    <span class="key">E</span>
+                                    <span class="key-speed">120ms</span>
+                                </div>
+                                <div class="key-item">
+                                    <span class="key">T</span>
+                                    <span class="key-speed">125ms</span>
+                                </div>
+                                <div class="key-item">
+                                    <span class="key">A</span>
+                                    <span class="key-speed">130ms</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pattern-card">
+                            <h4>Slowest Keys</h4>
+                            <div class="key-list">
+                                <div class="key-item">
+                                    <span class="key">Z</span>
+                                    <span class="key-speed">210ms</span>
+                                </div>
+                                <div class="key-item">
+                                    <span class="key">Q</span>
+                                    <span class="key-speed">200ms</span>
+                                </div>
+                                <div class="key-item">
+                                    <span class="key">X</span>
+                                    <span class="key-speed">195ms</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pattern-card">
+                            <h4>Most Errors</h4>
+                            <div class="key-list">
+                                <div class="key-item">
+                                    <span class="key">I</span>
+                                    <span class="key-speed">12%</span>
+                                </div>
+                                <div class="key-item">
+                                    <span class="key">O</span>
+                                    <span class="key-speed">10%</span>
+                                </div>
+                                <div class="key-item">
+                                    <span class="key">N</span>
+                                    <span class="key-speed">8%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pattern-card">
+                            <h4>Best Time of Day</h4>
+                            <div class="time-chart">
+                                <div class="time-bar" style="height: 30%">
+                                    <span class="time-label">Morning</span>
+                                </div>
+                                <div class="time-bar" style="height: 80%">
+                                    <span class="time-label">Afternoon</span>
+                                </div>
+                                <div class="time-bar" style="height: 60%">
+                                    <span class="time-label">Evening</span>
+                                </div>
+                                <div class="time-bar" style="height: 40%">
+                                    <span class="time-label">Night</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Progress Tab -->
+            <div class="tab-content" id="progress">
+                <div class="progress-charts">
+                    <div class="progress-chart-container">
+                        <h3>WPM Progress Over Time</h3>
+                        <div class="chart-container">
+                            <canvas id="wpmProgressChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-chart-container">
+                        <h3>Accuracy Progress Over Time</h3>
+                        <div class="chart-container">
+                            <canvas id="accuracyProgressChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rank-history">
+                    <h3>Rank Progression</h3>
+                    <div class="rank-timeline">
+                        <div class="rank-milestone achieved">
+                            <div class="rank-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="rank-details">
+                                <span class="rank-name">Beginner</span>
+                                <span class="rank-date">Jan 15, 2025</span>
+                            </div>
+                        </div>
+                        
+                        <div class="rank-milestone achieved">
+                            <div class="rank-icon">
+                                <i class="fas fa-feather"></i>
+                            </div>
+                            <div class="rank-details">
+                                <span class="rank-name">Quick Typist</span>
+                                <span class="rank-date">Feb 3, 2025</span>
+                            </div>
+                        </div>
+                        
+                        <div class="rank-milestone achieved">
+                            <div class="rank-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="rank-details">
+                                <span class="rank-name">Speed Demon</span>
+                                <span class="rank-date">Mar 12, 2025</span>
+                            </div>
+                        </div>
+                        
+                        <div class="rank-milestone">
+                            <div class="rank-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="rank-details">
+                                <span class="rank-name">Lightning Fingers</span>
+                                <span class="rank-date">Coming Soon</span>
+                            </div>
+                        </div>
+                        
+                        <div class="rank-milestone">
+                            <div class="rank-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="rank-details">
+                                <span class="rank-name">Typing Master</span>
+                                <span class="rank-date">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="improvement-tips">
+                    <h3>Improvement Tips</h3>
+                    <div class="tips-container">
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4>Practice Finger Positioning</h4>
+                                <p>Your accuracy with the keys 'I' and 'O' is lower than average. Try focusing on proper finger positioning for these keys.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4>Daily Practice</h4>
+                                <p>Your performance is best in the afternoon. Try to schedule short typing sessions during this time for optimal improvement.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4>Focus on Accuracy</h4>
+                                <p>Your speed is improving faster than your accuracy. Try slowing down slightly to reduce errors and build muscle memory.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Achievements Tab -->
+            <div class="tab-content" id="achievements">
+                <div class="achievements-grid">
+                    <div class="achievement-card achieved">
+                        <div class="achievement-icon">
+                            <i class="fas fa-flag-checkered"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h4>First Race</h4>
+                            <p>Complete your first typing race</p>
+                            <div class="achievement-date">Earned: Jan 10, 2025</div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-card achieved">
+                        <div class="achievement-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Speed Demon</h4>
+                            <p>Reach 80+ WPM in a single race</p>
+                            <div class="achievement-date">Earned: Feb 5, 2025</div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-card achieved">
+                        <div class="achievement-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Precision Typist</h4>
+                            <p>Complete a race with 95%+ accuracy</p>
+                            <div class="achievement-date">Earned: Feb 12, 2025</div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-card achieved">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Winner's Circle</h4>
+                            <p>Win 10 races against other players</p>
+                            <div class="achievement-date">Earned: Mar 1, 2025</div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h4>On Fire</h4>
+                            <p>Win 5 races in a row</p>
+                            <div class="achievement-progress">
+                                <div class="progress-bar" style="width: 60%"></div>
+                                <span>3/5 completed</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Dedicated Typist</h4>
+                            <p>Complete at least one race every day for a week</p>
+                            <div class="achievement-progress">
+                                <div class="progress-bar" style="width: 71%"></div>
+                                <span>5/7 days</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Lightning Fast</h4>
+                            <p>Reach 100+ WPM in a single race</p>
+                            <div class="achievement-progress">
+                                <div class="progress-bar" style="width: 90%"></div>
+                                <span>Best: 92 WPM</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Perfect Race</h4>
+                            <p>Complete a race with 100% accuracy</p>
+                            <div class="achievement-progress">
+                                <div class="progress-bar" style="width: 98%"></div>
+                                <span>Best: 98% accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Race History Tab -->
+            <div class="tab-content" id="history">
+                <div class="history-filters">
+                    <div class="filter-group">
+                        <label for="historyTimeframe">Timeframe:</label>
+                        <select id="historyTimeframe" class="filter-select">
+                            <option value="week">Last Week</option>
+                            <option value="month" selected>Last Month</option>
+                            <option value="year">Last Year</option>
+                            <option value="all">All Time</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="historySortBy">Sort By:</label>
+                        <select id="historySortBy" class="filter-select">
+                            <option value="date" selected>Date</option>
+                            <option value="wpm">WPM</option>
+                            <option value="accuracy">Accuracy</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="history-table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>WPM</th>
+                                <th>Accuracy</th>
+                                <th>Position</th>
+                                <th>Text</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <!-- Table rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="pagination-info">Page 1 of 5</span>
+                    <button class="pagination-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SpeedType Racer. All rights reserved.</p>
+    </footer>
+
+    <script src="stats.js"></script>
+</body>
+</html>
+

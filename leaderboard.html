@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedType Racer - Leaderboard</title>
+    <link rel="stylesheet" href="leaderboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-keyboard"></i>
+            <span>SpeedType Racer</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="race.html"><i class="fas fa-flag-checkered"></i> Race</a>
+            <a href="leaderboard.html" class="active"><i class="fas fa-trophy"></i> Leaderboard</a>
+            <a href="stats.html"><i class="fas fa-chart-line"></i> Stats</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        </div>
+        <div class="theme-toggle">
+            <i class="fas fa-sun"></i>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="leaderboard-container">
+        <h1>Leaderboard</h1>
+        
+        <!-- Time Period Tabs -->
+        <div class="time-tabs">
+            <button class="tab-btn active" data-period="daily">
+                <i class="far fa-clock"></i> Daily
+            </button>
+            <button class="tab-btn" data-period="weekly">
+                <i class="far fa-calendar"></i> Weekly
+            </button>
+            <button class="tab-btn" data-period="alltime">
+                <i class="fas fa-infinity"></i> All Time
+            </button>
+        </div>
+        
+        <!-- Leaderboard Content -->
+        <div class="leaderboard-content">
+            <div class="leaderboard-header">
+                <h2>Daily Top Racers</h2>
+                <p>The fastest typists in the last 24 hours</p>
+            </div>
+            
+            <!-- Leaderboard Table -->
+            <div class="leaderboard-table-container">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>RANK</th>
+                            <th>USERNAME</th>
+                            <th>WPM</th>
+                            <th>ACCURACY</th>
+                            <th>RACES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <!-- Table rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Your Position -->
+            <div class="your-position">
+                <h3>Your Position</h3>
+                <div class="position-card">
+                    <div class="position-rank">42</div>
+                    <div class="position-details">
+                        <span class="position-name">You</span>
+                        <div class="position-stats">
+                            <span><i class="fas fa-tachometer-alt"></i> 85 WPM</span>
+                            <span><i class="fas fa-bullseye"></i> 92% Accuracy</span>
+                            <span><i class="fas fa-flag-checkered"></i> 5 Races</span>
+                        </div>
+                    </div>
+                    <button class="btn primary position-btn">
+                        <i class="fas fa-arrow-up"></i> Improve Rank
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SpeedType Racer. All rights reserved.</p>
+    </footer>
+
+    <script src="leaderboard.js"></script>
+</body>
+</html>
+
