@@ -10,140 +10,89 @@
 <body>
   <!-- Navigation Bar -->
   <nav class="navbar">
-      <div class="logo">
-          <i class="fas fa-keyboard"></i>
-          <span>SpeedType Racer</span>
-      </div>
-      <div class="nav-links">
-          <a href="index.html"><i class="fas fa-home"></i> Home</a>
-          <a href="race.html"><i class="fas fa-flag-checkered"></i> Race</a>
-          <a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
-          <a href="stats.html"><i class="fas fa-chart-line"></i> Stats</a>
-          <a href="settings.html"><i class="fas fa-user"></i> Account</a>
-      </div>
-      <div class="theme-toggle">
-          <i class="fas fa-sun"></i>
-      </div>
+    <div class="logo">
+      <i class="fas fa-keyboard"></i>
+      <span>SpeedType Racer</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="race.html"><i class="fas fa-flag-checkered"></i> Race</a>
+      <a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
+      <a href="stats.html"><i class="fas fa-chart-line"></i> Stats</a>
+      <a href="settings.html"><i class="fas fa-user"></i> Account</a>
+    </div>
+    <div class="theme-toggle">
+      <i class="fas fa-sun"></i>
+    </div>
   </nav>
 
   <!-- Main Content -->
   <main class="multiplayer-container">
-      <h1>Multiplayer Race</h1>
-      
-      <div class="tab-container">
-          <div class="tab-buttons">
-              <button class="tab-btn" data-tab="join">Join Race</button>
-              <button class="tab-btn active" data-tab="create">Create Race</button>
-          </div>
-          
-          <div class="tab-content-container">
-              <!-- Join Race Tab -->
-              <div class="tab-content" id="join">
-                  <div class="join-form">
-                      <h2>Join a Race</h2>
-                      <p class="subtitle">Enter a room code to join an existing race</p>
-                      
-                      <div class="form-group">
-                          <label for="roomCode">Room Code</label>
-                          <input type="text" id="roomCode" placeholder="Enter room code">
-                      </div>
-                      
-                      <div class="form-group">
-                          <label for="joinUsername">Your Username</label>
-                          <input type="text" id="joinUsername" placeholder="Enter your username">
-                      </div>
-                      
-                      <button class="btn primary action-btn">
-                          <i class="fas fa-sign-in-alt"></i> Join Race
-                      </button>
-                  </div>
-              </div>
-              
-              <!-- Create Race Tab -->
-              <div class="tab-content active" id="create">
-                  <div class="create-form">
-                      <h2>Create a New Race</h2>
-                      <p class="subtitle">Set up a new multiplayer typing race for friends to join</p>
-                      
-                      <div class="form-group">
-                          <label for="createUsername">Your Username</label>
-                          <input type="text" id="createUsername" placeholder="Enter your username">
-                      </div>
-                      
-                      <div class="form-group">
-                          <label>Difficulty</label>
-                          <div class="difficulty-buttons">
-                              <button class="difficulty-btn" data-difficulty="easy">
-                                  <i class="fas fa-seedling"></i> Easy
-                              </button>
-                              <button class="difficulty-btn active" data-difficulty="medium">
-                                  <i class="fas fa-bolt"></i> Medium
-                              </button>
-                              <button class="difficulty-btn" data-difficulty="hard">
-                                  <i class="fas fa-fire"></i> Hard
-                              </button>
-                          </div>
-                      </div>
-                      
-                      <div class="form-group">
-                          <label for="maxPlayers">Max Players</label>
-                          <select id="maxPlayers">
-                              <option value="2">2 Players</option>
-                              <option value="4">4 Players</option>
-                              <option value="6">6 Players</option>
-                              <option value="8" selected>8 Players</option>
-                              <option value="10">10 Players</option>
-                              <option value="12">12 Players</option>
-                          </select>
-                      </div>
-                      
-                      <button class="btn primary action-btn">
-                          <i class="fas fa-plus-circle"></i> Create Race
-                      </button>
-                  </div>
-              </div>
-          </div>
+    <h1>Multiplayer Race</h1>
+    
+    <div class="tab-container">
+      <div class="tab-buttons">
+        <button class="tab-btn" data-tab="join">Join Race</button>
+        <button class="tab-btn active" data-tab="create">Create Race</button>
       </div>
       
-      <div class="active-races">
-          <h2>Active Races</h2>
-          <p class="no-races">No active public races found. Create a new race or join with a room code.</p>
-          
-          <!-- This section would show active races when available -->
-          <div class="races-list" style="display: none;">
-              <div class="race-card">
-                  <div class="race-info">
-                      <h3>Speed Champions</h3>
-                      <div class="race-details">
-                          <span><i class="fas fa-users"></i> 3/8 Players</span>
-                          <span><i class="fas fa-tachometer-alt"></i> Medium</span>
-                          <span><i class="fas fa-user"></i> Hosted by TypeMaster</span>
-                      </div>
-                  </div>
-                  <button class="btn primary join-btn">Join Race</button>
-              </div>
-              
-              <div class="race-card">
-                  <div class="race-info">
-                      <h3>Typing Beginners</h3>
-                      <div class="race-details">
-                          <span><i class="fas fa-users"></i> 2/6 Players</span>
-                          <span><i class="fas fa-tachometer-alt"></i> Easy</span>
-                          <span><i class="fas fa-user"></i> Hosted by NewTyper</span>
-                      </div>
-                  </div>
-                  <button class="btn primary join-btn">Join Race</button>
-              </div>
+      <div class="tab-content-container">
+        <!-- Join Race Tab -->
+        <div class="tab-content" id="join">
+          <div class="join-form">
+            <h2>Join a Race</h2>
+            <p class="subtitle">Enter the room code and your username to join an existing race</p>
+            
+            <div class="form-group">
+              <label for="roomCode">Room Code</label>
+              <input type="text" id="roomCode" placeholder="Enter room code">
+            </div>
+            
+            <div class="form-group">
+              <label for="joinUsername">Your Username</label>
+              <input type="text" id="joinUsername" placeholder="Enter your username">
+            </div>
+            
+            <button class="btn primary action-btn">
+              <i class="fas fa-sign-in-alt"></i> Join Race
+            </button>
           </div>
+        </div>
+        
+        <!-- Create Race Tab -->
+        <div class="tab-content active" id="create">
+          <div class="create-form">
+            <h2>Create a New Race</h2>
+            <p class="subtitle">Enter your username to create a new race</p>
+            
+            <div class="form-group">
+              <label for="createUsername">Your Username</label>
+              <input type="text" id="createUsername" placeholder="Enter your username">
+            </div>
+            
+            <button class="btn primary action-btn">
+              <i class="fas fa-plus-circle"></i> Create Race
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
+    
+    <!-- Optionally: Active Races Section (if you want to show active races) -->
+    <div class="active-races">
+      <h2>Active Races</h2>
+      <p class="no-races">No active public races found. Create a new race or join with a room code.</p>
+      <div class="races-list" style="display: none;">
+        <!-- Race cards would be dynamically inserted here -->
+      </div>
+    </div>
   </main>
 
   <!-- Footer -->
   <footer>
-      <p>&copy; 2025 SpeedType Racer. All rights reserved.</p>
+    <p>&copy; 2025 SpeedType Racer. All rights reserved.</p>
   </footer>
 
   <script src="join.js"></script>
 </body>
 </html>
-

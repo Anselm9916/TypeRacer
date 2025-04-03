@@ -3,14 +3,11 @@ const themeToggle = document.querySelector(".theme-toggle")
 const body = document.body
 const tabButtons = document.querySelectorAll(".tab-btn")
 const tabContents = document.querySelectorAll(".tab-content")
-const joinButtons = document.querySelectorAll(".join-btn")
 const difficultyButtons = document.querySelectorAll(".difficulty-btn")
 
 // Check for saved theme preference
 document.addEventListener("DOMContentLoaded", () => {
-  // Check if user has a saved theme preference
   const savedTheme = localStorage.getItem("theme")
-
   if (savedTheme === "dark") {
     body.classList.add("dark")
     themeToggle.innerHTML = '<i class="fas fa-moon"></i>'
@@ -22,10 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Theme Toggle Functionality
 themeToggle.addEventListener("click", () => {
-  // Toggle dark class on body
   body.classList.toggle("dark")
-
-  // Update icon based on current theme
   if (body.classList.contains("dark")) {
     themeToggle.innerHTML = '<i class="fas fa-moon"></i>'
     localStorage.setItem("theme", "dark")
@@ -38,15 +32,8 @@ themeToggle.addEventListener("click", () => {
 // Tab Button Click Handlers
 tabButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    // Remove active class from all buttons
-    tabButtons.forEach((btn) => {
-      btn.classList.remove("active")
-    })
-
-    // Add active class to clicked button
+    tabButtons.forEach((btn) => btn.classList.remove("active"))
     button.classList.add("active")
-
-    // Show corresponding tab content
     const tabId = button.getAttribute("data-tab")
     tabContents.forEach((content) => {
       content.classList.remove("active")
@@ -57,52 +44,74 @@ tabButtons.forEach((button) => {
   })
 })
 
-// Difficulty Button Click Handlers
+// Difficulty Button Click Handlers (if you need to store this later)
 difficultyButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    // Remove active class from all difficulty buttons
-    difficultyButtons.forEach((btn) => {
-      btn.classList.remove("active")
-    })
-
-    // Add active class to clicked button
+    difficultyButtons.forEach((btn) => btn.classList.remove("active"))
     button.classList.add("active")
   })
 })
 
-// Join Race Button Click Handlers
-joinButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    // This would normally join the race, but for demo purposes we'll just show an alert
-    const raceName = button.closest(".race-card").querySelector("h3").textContent
-    alert(`Joining race: ${raceName}`)
-    window.location.href = "race.html"
-  })
-})
-
-// Action Button Click Handlers
+// Updated Action Button Click Handlers
 const actionButtons = document.querySelectorAll(".action-btn")
 actionButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const tabId = button.closest(".tab-content").id
     if (tabId === "join") {
-      const roomCode = document.getElementById("roomCode").value
-      const username = document.getElementById("joinUsername").value
+      const roomCode = document.getElementById("roomCode").value.trim()
+      const username = document.getElementById("joinUsername").value.trim()
       if (roomCode && username) {
-        alert(`Joining race with room code: ${roomCode} as ${username}`)
-        window.location.href = "race.html"
+        // Send join request to join_room.php
+        const formData = new FormData()
+        formData.append('room_code', roomCode)
+        formData.append('user_name', username)
+        fetch('join_room.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.message) {
+            alert(`Succes: ${data.message}`)
+            // Redirect to race page if join successful
+            window.location.href = "race.html"
+          } else if (data.error) {
+            alert(`Error: ${data.error}`)
+          }
+        })
+        .catch(error => console.error('Error:', error))
       } else {
-        alert("Please enter both room code and username")
+        alert("Vul zowel de room code als je gebruikersnaam in")
       }
     } else if (tabId === "create") {
-      const username = document.getElementById("createUsername").value
-      const difficulty = document.querySelector(".difficulty-btn.active").getAttribute("data-difficulty")
-      const maxPlayers = document.getElementById("maxPlayers").value
+      const username = document.getElementById("createUsername").value.trim()
+      // (Optional) You can allow the user to supply a room code or have it auto-generated
+      // For now we leave it blank so that the PHP endpoint auto-generates it.
+      let roomCode = "" 
+      // If you wish to add difficulty and maxPlayers into the request,
+      // you need to update your backend and database to store those values.
       if (username) {
-        alert(`Creating new ${difficulty} race for ${maxPlayers} players as ${username}`)
-        window.location.href = "race.html"
+        const formData = new FormData()
+        formData.append('room_code', roomCode) // empty means auto-generate
+        formData.append('user_name', username)
+        fetch('create_room.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.room_code) {
+            alert(`Room aangemaakt! Code: ${data.room_code}`)
+            // Optionally auto-join the creator to the room immediately:
+            // You could either call join_room.php here or store the room code in localStorage.
+            window.location.href = "race.html"
+          } else if (data.error) {
+            alert(`Error: ${data.error}`)
+          }
+        })
+        .catch(error => console.error('Error:', error))
       } else {
-        alert("Please enter your username")
+        alert("Vul je gebruikersnaam in")
       }
     }
   })
@@ -114,4 +123,3 @@ const footerYear = document.querySelector("footer p")
 if (footerYear) {
   footerYear.textContent = footerYear.textContent.replace("2025", currentYear)
 }
-
