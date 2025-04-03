@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeedType Racer - Login</title>
+  <link rel="stylesheet" href="settings.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-keyboard"></i>
+      <span>SpeedType Racer</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="race.html"><i class="fas fa-flag-checkered"></i> Race</a>
+      <a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
+      <a href="stats.html"><i class="fas fa-chart-line"></i> Stats</a>
+      <a href="settings.html" class="active"><i class="fas fa-user"></i> Account</a>
+    </div>
+    <div class="theme-toggle">
+      <i class="fas fa-sun"></i>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="login-container">
+    <div class="login-card">
+      <div class="login-tabs">
+        <button class="login-tab active" data-tab="login">Sign In</button>
+        <button class="login-tab" data-tab="signup">Sign Up</button>
+      </div>
+      
+      <!-- Login Form -->
+      <div class="login-form active" id="login-form">
+        <h2><i class="fas fa-sign-in-alt"></i> Sign In</h2>
+        <p class="form-subtitle">Welcome back! Sign in to track your progress and compete on the leaderboard.</p>
+        
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email">
+        </div>
+        
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password">
+        </div>
+        
+        <div class="form-group">
+          <div class="remember-forgot">
+            <div class="custom-checkbox">
+              <input type="checkbox" id="rememberMe">
+              <label for="rememberMe">
+                <span class="checkbox-icon"></span>
+                Remember me
+              </label>
+            </div>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+        </div>
+        
+        <button class="btn primary login-btn">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+        
+        <div class="social-login">
+          <p>Or sign in with</p>
+          <div class="social-buttons">
+            <button class="social-btn google">
+              <i class="fab fa-google"></i> Google
+            </button>
+            <button class="social-btn facebook">
+              <i class="fab fa-facebook-f"></i> Facebook
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Signup Form -->
+      <div class="login-form" id="signup-form">
+        <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+        <p class="form-subtitle">Join SpeedType Racer to track your progress and compete with others!</p>
+        
+        <div class="form-group">
+          <label for="signupUsername">Username</label>
+          <input type="text" id="signupUsername" placeholder="Choose a username">
+        </div>
+        
+        <div class="form-group">
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email">
+        </div>
+        
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" placeholder="Create a password">
+        </div>
+        
+        <div class="form-group">
+          <label for="signupConfirmPassword">Confirm Password</label>
+          <input type="password" id="signupConfirmPassword" placeholder="Confirm your password">
+        </div>
+        
+        <div class="form-group">
+          <div class="custom-checkbox terms-checkbox">
+            <input type="checkbox" id="agreeTerms">
+            <label for="agreeTerms">
+              <span class="checkbox-icon"></span>
+              I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </label>
+          </div>
+        </div>
+        
+        <button class="btn primary signup-btn">
+          <i class="fas fa-user-plus"></i> Sign Up
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SpeedType Racer. All rights reserved.</p>
+  </footer>
+
+  <script src="settings.js"></script>
+</body>
+</html>
+

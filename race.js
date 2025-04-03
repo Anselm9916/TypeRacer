@@ -169,4 +169,3 @@ const footerYear = document.querySelector("footer p")
 if (footerYear) {
   footerYear.textContent = footerYear.textContent.replace("2025", currentYear)
 }
-
