@@ -81,7 +81,7 @@
         .main-container {
             display: flex;
             flex: 1;
-            min-height: 0;
+            overflow: hidden;
         }
 
         /* Sidebar Styles */
@@ -92,7 +92,6 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            max-height: calc(100vh - 60px - 40px); /* Subtract navbar and footer heights */
         }
 
         .room-info {
@@ -165,8 +164,6 @@
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
-            min-height: 200px;
-            max-height: 100%;
         }
 
         .participant-card {
@@ -215,14 +212,6 @@
             gap: 0.5rem;
         }
 
-        .participant-status.ready {
-            color: #2ecc71;
-        }
-
-        .participant-status.not-ready {
-            color: #e74c3c;
-        }
-
         .participant-you {
             border: 2px solid var(--primary-color);
         }
@@ -264,28 +253,10 @@
             background-color: #c0392b;
         }
 
-        .ready-indicator {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            margin-right: 4px;
-        }
-
-        .ready-indicator.ready {
-            background-color: #2ecc71;
-        }
-
-        .ready-indicator.not-ready {
-            background-color: #e74c3c;
-        }
-
         .ready-btn {
-            background-color: var(--background-light);
+            background-color: var(--background-dark);
             color: var(--text-light);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--primary-color);
             border-radius: 0.25rem;
             padding: 0.25rem 0.5rem;
             font-size: 0.8rem;
@@ -294,14 +265,45 @@
             transition: all 0.2s;
         }
 
-        .ready-btn.ready {
-            background-color: #2ecc71;
+        .ready-btn.active {
+            background-color: var(--primary-color);
             color: white;
-            border-color: #27ae60;
         }
 
         .ready-btn:hover {
-            filter: brightness(1.1);
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            background-color: var(--background-dark);
+            border: 1px solid var(--text-muted);
+        }
+
+        .status-badge.ready {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .test-controls {
+            background-color: var(--background-light);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 0 1rem 1rem;
+        }
+
+        .test-controls h3 {
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .test-controls .btn {
+            width: 100%;
+            margin-bottom: 0.5rem;
         }
 
         .sidebar-controls {
@@ -364,9 +366,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             background-color: var(--background-dark);
             overflow-y: auto;
-            min-height: calc(100vh - 60px - 40px); /* Subtract navbar and footer heights */
         }
 
         .lobby-header {
@@ -388,6 +390,10 @@
         .game-options {
             width: 100%;
             max-width: 600px;
+            background-color: var(--background-medium);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .option-group {
@@ -468,13 +474,11 @@
         .chat-container {
             width: 100%;
             max-width: 600px;
-            flex-grow: 1;
-            min-height: 300px;
-            margin-bottom: 2rem;
             background-color: var(--background-medium);
             border-radius: 0.75rem;
             display: flex;
             flex-direction: column;
+            height: 300px;
         }
 
         .chat-header {
@@ -493,7 +497,6 @@
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
-            min-height: 200px;
         }
 
         .message {
@@ -587,24 +590,6 @@
                 flex-direction: column;
             }
         }
-
-        /* Test Controls */
-        .test-controls {
-            background-color: var(--background-light);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .test-controls h3 {
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
-        }
-
-        .test-controls .btn {
-            width: 100%;
-            margin-bottom: 0.5rem;
-        }
     </style>
 </head>
 <body>
@@ -640,31 +625,28 @@
                 </div>
             </div>
 
-            
-<div class="participants-header">
-    <div class="participants-title">
-        <i class="fas fa-users"></i> Participants
-    </div>
-    <div class="participant-count" id="participantCount">1/8</div>
-</div>
-
-<div class="participants-list" id="participantsList">
-    <!-- You (Host) -->
-    <div class="participant-card participant-you participant-host">
-        <div class="participant-avatar">Y</div>
-        <div class="participant-info">
-            <div class="participant-name">You</div>
-            <div class="participant-status ready">
-                <span class="ready-indicator ready"></span>
-                Ready
-                <button class="ready-btn ready" id="yourReadyBtn">Ready</button>
+            <div class="participants-header">
+                <div class="participants-title">
+                    <i class="fas fa-users"></i> Participants
+                </div>
+                <div class="participant-count" id="participantCount">1/8</div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Other participants will be added dynamically -->
-</div>
 
+            <div class="participants-list" id="participantsList">
+                <!-- You (Host) -->
+                <div class="participant-card participant-you participant-host">
+                    <div class="participant-avatar">Y</div>
+                    <div class="participant-info">
+                        <div class="participant-name">You</div>
+                        <div class="participant-status">
+                            <span class="status-badge">Not Ready</span>
+                            <button class="ready-btn" id="yourReadyBtn">Ready</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Other participants will be added dynamically -->
+            </div>
 
             <!-- Test Controls (for development) -->
             <div class="test-controls">
@@ -772,6 +754,7 @@
         const chatInput = document.getElementById("chatInput");
         const sendChatBtn = document.getElementById("sendChatBtn");
         const chatMessages = document.getElementById("chatMessages");
+        const yourReadyBtn = document.getElementById("yourReadyBtn");
 
         // Global variables
         let participants = [
@@ -780,12 +763,11 @@
                 name: "You",
                 isHost: true,
                 isYou: true,
-                status: "Ready",
-                isReady: true,
+                isReady: false,
                 avatar: "Y"
             }
         ];
-        const maxParticipants = 8;
+        let maxParticipants = 8;
         let selectedDifficulty = "medium";
 
         // Random name generator data
@@ -847,6 +829,9 @@
 
             // Leave room
             leaveRoomBtn.addEventListener("click", leaveRoom);
+
+            // Ready button
+            yourReadyBtn.addEventListener("click", toggleReadyStatus);
 
             // Difficulty buttons
             difficultyButtons.forEach(button => {
@@ -924,8 +909,7 @@
                 name: name,
                 isHost: false,
                 isYou: false,
-                status: "Not Ready",
-                isReady: false,
+                isReady: Math.random() > 0.3, // 70% chance of being ready
                 avatar: avatar
             };
             
@@ -945,6 +929,7 @@
         function resetParticipants() {
             // Keep only yourself
             participants = participants.filter(p => p.isYou);
+            participants[0].isReady = false; // Reset your ready status
             updateParticipantsList();
             
             // Add system message to chat
@@ -952,6 +937,32 @@
             
             // Disable start race button
             startRaceBtn.disabled = true;
+        }
+
+        // Toggle ready status
+        function toggleReadyStatus() {
+            const youIndex = participants.findIndex(p => p.isYou);
+            if (youIndex !== -1) {
+                participants[youIndex].isReady = !participants[youIndex].isReady;
+                
+                // Update UI
+                updateParticipantsList();
+                
+                // Add system message
+                const readyStatus = participants[youIndex].isReady ? "ready" : "not ready";
+                addSystemMessage(`You are now ${readyStatus}.`);
+                
+                // Check if all participants are ready
+                checkAllReady();
+            }
+        }
+
+        // Update max players
+        function updateMaxPlayers() {
+            maxParticipants = parseInt(maxPlayersSelect.value);
+            
+            // Update participant count
+            participantCount.textContent = `${participants.length}/${maxParticipants}`;
         }
 
         // Update participants list
@@ -964,22 +975,21 @@
                 const participantCard = document.createElement("div");
                 participantCard.className = `participant-card ${participant.isYou ? "participant-you" : ""} ${participant.isHost ? "participant-host" : ""}`;
                 
-                const readyStatusClass = participant.isReady ? "ready" : "not-ready";
-                const readyButtonText = participant.isReady ? "Ready" : "Not Ready";
-                const readyButtonClass = participant.isReady ? "ready" : "";
+                const statusBadgeClass = participant.isReady ? "ready" : "";
+                const statusText = participant.isReady ? "Ready" : "Not Ready";
                 
                 let readyButton = '';
                 if (participant.isYou) {
-                    readyButton = `<button class="ready-btn ${readyButtonClass}" id="yourReadyBtn">${readyButtonText}</button>`;
+                    const readyBtnClass = participant.isReady ? "active" : "";
+                    readyButton = `<button class="ready-btn ${readyBtnClass}" id="yourReadyBtn">Ready</button>`;
                 }
                 
                 participantCard.innerHTML = `
                     <div class="participant-avatar">${participant.avatar}</div>
                     <div class="participant-info">
                         <div class="participant-name">${participant.name}</div>
-                        <div class="participant-status ${readyStatusClass}">
-                            <span class="ready-indicator ${readyStatusClass}"></span>
-                            ${participant.status}
+                        <div class="participant-status">
+                            <span class="status-badge ${statusBadgeClass}">${statusText}</span>
                             ${readyButton}
                         </div>
                     </div>
@@ -1015,17 +1025,6 @@
             checkAllReady();
         }
 
-        // Toggle ready status
-        function toggleReadyStatus() {
-            const youIndex = participants.findIndex(p => p.isYou);
-            if (youIndex !== -1) {
-                participants[youIndex].isReady = !participants[youIndex].isReady;
-                participants[youIndex].status = participants[youIndex].isReady ? "Ready" : "Not Ready";
-                
-                updateParticipantsList();
-            }
-        }
-
         // Kick a participant
         function kickParticipant(participantId) {
             const participantIndex = participants.findIndex(p => p.id === participantId);
@@ -1040,62 +1039,63 @@
                 
                 // Add system message
                 addSystemMessage(`${participantName} has been kicked from the room.`);
-        
-        // Disable start race button if less than 2 participants
-        if (participants.length < 2) {
-            startRaceBtn.disabled = true;
+                
+                // Disable start race button if less than 2 participants
+                if (participants.length < 2) {
+                    startRaceBtn.disabled = true;
+                }
+            }
         }
-    }
-}
 
-// Check if all participants are ready
-function checkAllReady() {
-    const allReady = participants.every(p => p.isReady);
-    
-    // Update start race button
-    if (participants.length >= 2 && allReady) {
-        startRaceBtn.disabled = false;
-        startRaceBtn.innerHTML = '<i class="fas fa-flag-checkered"></i> Start Race (All Ready!)';
-    } else if (participants.length >= 2) {
-        startRaceBtn.disabled = false;
-        startRaceBtn.innerHTML = '<i class="fas fa-flag-checkered"></i> Start Race';
-    } else {
-        startRaceBtn.disabled = true;
-        startRaceBtn.innerHTML = '<i class="fas fa-flag-checkered"></i> Start Race';
-    }
-}
-
-// Start race
-function startRace() {
-    if (participants.length < 2) {
-        alert("Need at least 2 participants to start a race!");
-        return;
-    }
-    
-    // Check if all participants are ready
-    const notReadyParticipants = participants.filter(p => !p.isReady);
-    if (notReadyParticipants.length > 0) {
-        if (confirm("Not all participants are ready. Start the race anyway?")) {
-            // Proceed with starting the race
-            proceedWithRaceStart();
+        // Check if all participants are ready
+        function checkAllReady() {
+            const allReady = participants.every(p => p.isReady);
+            const anyParticipants = participants.length >= 2;
+            
+            // Update start race button
+            if (anyParticipants && allReady) {
+                startRaceBtn.disabled = false;
+                startRaceBtn.innerHTML = '<i class="fas fa-flag-checkered"></i> Start Race (All Ready!)';
+            } else if (anyParticipants) {
+                startRaceBtn.disabled = false;
+                startRaceBtn.innerHTML = '<i class="fas fa-flag-checkered"></i> Start Race';
+            } else {
+                startRaceBtn.disabled = true;
+                startRaceBtn.innerHTML = '<i class="fas fa-flag-checkered"></i> Start Race';
+            }
         }
-    } else {
-        // All participants are ready, start the race
-        proceedWithRaceStart();
-    }
-}
 
-// Proceed with race start
-function proceedWithRaceStart() {
-    // In a real implementation, this would redirect to the race page
-    // or trigger the race to start via your PHP backend
-    
-    // For now, just show an alert
-    alert(`Starting race with ${participants.length} participants on ${selectedDifficulty} difficulty!`);
-    
-    // You would typically redirect here:
-    // window.location.href = "race.html";
-}
+        // Start race
+        function startRace() {
+            if (participants.length < 2) {
+                alert("Need at least 2 participants to start a race!");
+                return;
+            }
+            
+            // Check if all participants are ready
+            const notReadyParticipants = participants.filter(p => !p.isReady);
+            if (notReadyParticipants.length > 0) {
+                if (confirm("Not all participants are ready. Start the race anyway?")) {
+                    // Proceed with starting the race
+                    proceedWithRaceStart();
+                }
+            } else {
+                // All participants are ready, start the race
+                proceedWithRaceStart();
+            }
+        }
+
+        // Proceed with race start
+        function proceedWithRaceStart() {
+            // In a real implementation, this would redirect to the race page
+            // or trigger the race to start via your PHP backend
+            
+            // For now, just show an alert
+            alert(`Starting race with ${participants.length} participants on ${selectedDifficulty} difficulty!`);
+            
+            // You would typically redirect here:
+            // window.location.href = "race.html";
+        }
 
         // Leave room
         function leaveRoom() {
