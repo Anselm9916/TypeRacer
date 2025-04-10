@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedType Racer - Lobby</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --background-dark: #121212;
+            --background-medium: #1e1e1e;
+            --background-light: #2a2a2a;
+            --text-light: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--background-medium);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--text-light);
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar Styles */
+        .lobby-sidebar {
+            width: 320px;
+            background-color: var(--background-medium);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .room-info {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .room-code-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .room-code {
+            background-color: var(--background-light);
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+            font-size: 1.25rem;
+            letter-spacing: 1px;
+            flex: 1;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .copy-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .participants-header {
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .participants-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .participant-count {
+            background-color: var(--background-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .participants-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .participant-card {
+            background-color: var(--background-light);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .participant-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .participant-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .participant-info {
+            flex: 1;
+        }
+
+        .participant-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .participant-status {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .participant-you {
+            border: 2px solid var(--primary-color);
+        }
+
+        .participant-you .participant-status {
+            color: var(--primary-color);
+        }
+
+        .participant-host .participant-name::after {
+            content: " (Host)";
+            color: var(--primary-color);
+            font-weight: normal;
+        }
+
+        .sidebar-controls {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn.primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn.secondary {
+            background-color: var(--background-light);
+            color: var(--text-light);
+        }
+
+        .btn.secondary:hover {
+            background-color: #3a3a3a;
+        }
+
+        .btn.danger {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn.danger:hover {
+            background-color: #c0392b;
+        }
+
+        .btn.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--background-dark);
+            overflow-y: auto;
+        }
+
+        .lobby-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .lobby-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .lobby-header p {
+            color: var(--text-muted);
+            max-width: 600px;
+        }
+
+        .game-options {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--background-medium);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .option-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .option-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .option-group h3 {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .difficulty-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .difficulty-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--background-light);
+            border-radius: 0.5rem;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .difficulty-btn:hover {
+            border-color: var(--primary-color);
+        }
+
+        .difficulty-btn.active {
+            border-color: var(--primary-color);
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .difficulty-btn i {
+            font-size: 1.5rem;
+        }
+
+        .select-container {
+            position: relative;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: none;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .select-container::after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--background-medium);
+            border-radius: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            height: 300px;
+        }
+
+        .chat-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .message {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            max-width: 80%;
+        }
+
+        .system-message {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--text-muted);
+            align-self: center;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .user-message {
+            background-color: var(--primary-color);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .other-message {
+            background-color: var(--background-light);
+            align-self: flex-start;
+        }
+
+        .message-sender {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 0.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem 0 0 0.5rem;
+            background-color: var(--background-light);
+            color: var(--text-light);
+        }
+
+        .chat-input input:focus {
+            outline: none;
+        }
+
+        .chat-input button {
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 0 0.5rem 0.5rem 0;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            padding: 1rem;
+            text-align: center;
+            background-color: var(--background-medium);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .lobby-sidebar {
+                width: 100%;
+                max-height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .difficulty-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Test Controls */
+        .test-controls {
+            background-color: var(--background-light);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .test-controls h3 {
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .test-controls .btn {
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-keyboard"></i>
+            <span>SpeedType Racer</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="race.html"><i class="fas fa-flag-checkered"></i> Race</a>
+            <a href="lobby.html" class="active"><i class="fas fa-users"></i> Lobby</a>
+            <a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
+            <a href="stats.html"><i class="fas fa-chart-line"></i> Stats</a>
+        </div>
+        <div class="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Lobby Sidebar -->
+        <div class="lobby-sidebar">
+            <div class="room-info">
+                <h2>Race Room</h2>
+                <div class="room-code-container">
+                    <div class="room-code" id="roomCode">ABC123</div>
+                    <button class="copy-btn" id="copyCodeBtn" title="Copy room code">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="participants-header">
+                <div class="participants-title">
+                    <i class="fas fa-users"></i> Participants
+                </div>
+                <div class="participant-count" id="participantCount">1/8</div>
+            </div>
+
+            <div class="participants-list" id="participantsList">
+                <!-- You (Host) -->
+                <div class="participant-card participant-you participant-host">
+                    <div class="participant-avatar">Y</div>
+                    <div class="participant-info">
+                        <div class="participant-name">You</div>
+                        <div class="participant-status">Ready</div>
+                    </div>
+                </div>
+                
+                <!-- Other participants will be added dynamically -->
+            </div>
+
+            <!-- Test Controls (for development) -->
+            <div class="test-controls">
+                <h3>Test Controls</h3>
+                <button class="btn secondary" id="addRandomUserBtn">
+                    <i class="fas fa-user-plus"></i> Add Random User
+                </button>
+                <button class="btn danger" id="resetUsersBtn">
+                    <i class="fas fa-trash"></i> Reset Users
+                </button>
+            </div>
+
+            <div class="sidebar-controls">
+                <button class="btn primary" id="startRaceBtn" disabled>
+                    <i class="fas fa-flag-checkered"></i> Start Race
+                </button>
+                <button class="btn danger" id="leaveRoomBtn">
+                    <i class="fas fa-sign-out-alt"></i> Leave Room
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="lobby-header">
+                <h1>Race Lobby</h1>
+                <p>Invite friends to join your race using the room code, customize game settings, and chat with other racers while waiting for the race to start.</p>
+            </div>
+
+            <div class="game-options">
+                <div class="option-group">
+                    <h3><i class="fas fa-tachometer-alt"></i> Difficulty</h3>
+                    <div class="difficulty-buttons">
+                        <button class="difficulty-btn" data-difficulty="easy">
+                            <i class="fas fa-seedling"></i>
+                            <span>Easy</span>
+                        </button>
+                        <button class="difficulty-btn active" data-difficulty="medium">
+                            <i class="fas fa-bolt"></i>
+                            <span>Medium</span>
+                        </button>
+                        <button class="difficulty-btn" data-difficulty="hard">
+                            <i class="fas fa-fire"></i>
+                            <span>Hard</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <h3><i class="fas fa-users"></i> Max Players</h3>
+                    <div class="select-container">
+                        <select id="maxPlayers">
+                            <option value="2">2 Players</option>
+                            <option value="4">4 Players</option>
+                            <option value="6">6 Players</option>
+                            <option value="8" selected>8 Players</option>
+                            <option value="10">10 Players</option>
+                            <option value="12">12 Players</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-header">
+                    <i class="fas fa-comments"></i> Race Chat
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message system-message">
+                        Welcome to the race room! Chat with other racers here.
+                    </div>
+                    <div class="message system-message">
+                        Invite friends by sharing your room code: ABC123
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type a message..." maxlength="100">
+                    <button id="sendChatBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 SpeedType Racer. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const themeToggle = document.querySelector(".theme-toggle");
+        const body = document.body;
+        const roomCodeElement = document.getElementById("roomCode");
+        const copyCodeBtn = document.getElementById("copyCodeBtn");
+        const participantsList = document.getElementById("participantsList");
+        const participantCount = document.getElementById("participantCount");
+        const addRandomUserBtn = document.getElementById("addRandomUserBtn");
+        const resetUsersBtn = document.getElementById("resetUsersBtn");
+        const startRaceBtn = document.getElementById("startRaceBtn");
+        const leaveRoomBtn = document.getElementById("leaveRoomBtn");
+        const difficultyButtons = document.querySelectorAll(".difficulty-btn");
+        const maxPlayersSelect = document.getElementById("maxPlayers");
+        const chatInput = document.getElementById("chatInput");
+        const sendChatBtn = document.getElementById("sendChatBtn");
+        const chatMessages = document.getElementById("chatMessages");
+
+        // Global variables
+        let participants = [
+            {
+                id: "you",
+                name: "You",
+                isHost: true,
+                isYou: true,
+                status: "Ready",
+                avatar: "Y"
+            }
+        ];
+        const maxParticipants = 8;
+        let selectedDifficulty = "medium";
+
+        // Random name generator data
+        const firstNames = [
+            "Alex", "Jordan", "Taylor", "Morgan", "Casey", "Riley", "Avery", 
+            "Quinn", "Skyler", "Dakota", "Reese", "Finley", "Rowan", "Jamie", 
+            "Emerson", "Sage", "Harper", "Kai", "Remy", "Blake"
+        ];
+        
+        const lastNames = [
+            "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", 
+            "Davis", "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", 
+            "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin"
+        ];
+
+        // Initialize the page
+        function init() {
+            // Generate a random room code if not already set
+            if (roomCodeElement.textContent === "ABC123") {
+                roomCodeElement.textContent = generateRoomCode();
+            }
+
+            // Update participants list
+            updateParticipantsList();
+
+            // Set up event listeners
+            setupEventListeners();
+
+            // Update copyright year
+            updateCopyrightYear();
+        }
+
+        // Generate a random room code
+        function generateRoomCode() {
+            const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+            let code = "";
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Theme toggle
+            themeToggle.addEventListener("click", toggleTheme);
+
+            // Copy room code
+            copyCodeBtn.addEventListener("click", copyRoomCode);
+
+            // Add random user
+            addRandomUserBtn.addEventListener("click", addRandomParticipant);
+
+            // Reset users
+            resetUsersBtn.addEventListener("click", resetParticipants);
+
+            // Start race
+            startRaceBtn.addEventListener("click", startRace);
+
+            // Leave room
+            leaveRoomBtn.addEventListener("click", leaveRoom);
+
+            // Difficulty buttons
+            difficultyButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    // Remove active class from all buttons
+                    difficultyButtons.forEach(btn => btn.classList.remove("active"));
+                    
+                    // Add active class to clicked button
+                    button.classList.add("active");
+                    
+                    // Update selected difficulty
+                    selectedDifficulty = button.getAttribute("data-difficulty");
+                });
+            });
+
+            // Max players select
+            maxPlayersSelect.addEventListener("change", updateMaxPlayers);
+
+            // Chat input
+            chatInput.addEventListener("keypress", e => {
+                if (e.key === "Enter") {
+                    sendChatMessage();
+                }
+            });
+
+            // Send chat button
+            sendChatBtn.addEventListener("click", sendChatMessage);
+        }
+
+        // Toggle theme
+        function toggleTheme() {
+            body.classList.toggle("dark");
+            
+            if (body.classList.contains("dark")) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        }
+
+        // Copy room code
+        function copyRoomCode() {
+            const roomCode = roomCodeElement.textContent;
+            
+            navigator.clipboard.writeText(roomCode)
+                .then(() => {
+                    // Show success state
+                    copyCodeBtn.innerHTML = '<i class="fas fa-check"></i>';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        copyCodeBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error("Could not copy text: ", err);
+                    alert("Failed to copy room code: " + roomCode);
+                });
+        }
+
+        // Add a random participant
+        function addRandomParticipant() {
+            if (participants.length >= maxParticipants) {
+                alert(`Maximum number of participants (${maxParticipants}) reached!`);
+                return;
+            }
+            
+            const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+            const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+            const name = `${firstName} ${lastName.charAt(0)}.`;
+            const avatar = name.charAt(0);
+            
+            const newParticipant = {
+                id: `user_${Date.now()}`,
+                name: name,
+                isHost: false,
+                isYou: false,
+                status: "Ready",
+                avatar: avatar
+            };
+            
+            participants.push(newParticipant);
+            updateParticipantsList();
+            
+            // Add system message to chat
+            addSystemMessage(`${name} has joined the room.`);
+            
+            // Enable start race button if there are at least 2 participants
+            if (participants.length >= 2) {
+                startRaceBtn.disabled = false;
+            }
+        }
+
+        // Reset participants
+        function resetParticipants() {
+            // Keep only yourself
+            participants = participants.filter(p => p.isYou);
+            updateParticipantsList();
+            
+            // Add system message to chat
+            addSystemMessage("All participants have been removed.");
+            
+            // Disable start race button
+            startRaceBtn.disabled = true;
+        }
+
+        // Update participants list
+        function updateParticipantsList() {
+            // Clear the list
+            participantsList.innerHTML = "";
+            
+            // Add each participant
+            participants.forEach(participant => {
+                const participantCard = document.createElement("div");
+                participantCard.className = `participant-card ${participant.isYou ? "participant-you" : ""} ${participant.isHost ? "participant-host" : ""}`;
+                
+                participantCard.innerHTML = `
+                    <div class="participant-avatar">${participant.avatar}</div>
+                    <div class="participant-info">
+                        <div class="participant-name">${participant.name}</div>
+                        <div class="participant-status">${participant.status}</div>
+                    </div>
+                `;
+                
+                participantsList.appendChild(participantCard);
+            });
+            
+            // Update participant count
+            participantCount.textContent = `${participants.length}/${maxParticipants}`;
+        }
+
+        // Update max players
+        function updateMaxPlayers() {
+            const newMax = parseInt(maxPlayersSelect.value);
+            
+            // If new max is less than current participants, remove excess participants
+            if (newMax < participants.length) {
+                // Keep yourself and as many others as will fit
+                const youIndex = participants.findIndex(p => p.isYou);
+                const you = participants[youIndex];
+                
+                // Get others and sort by join time (assuming ID has timestamp)
+                const others = participants.filter(p => !p.isYou)
+                    .sort((a, b) => a.id.localeCompare(b.id));
+                
+                // Keep only enough to fit the new max
+                const keepOthers = others.slice(0, newMax - 1);
+                
+                // Update participants array
+                participants = [you, ...keepOthers];
+                
+                // Update UI
+                updateParticipantsList();
+                
+                // Add system message
+                addSystemMessage(`Maximum players reduced to ${newMax}. Some participants were removed.`);
+            }
+        }
+
+        // Start race
+        function startRace() {
+            if (participants.length < 2) {
+                alert("Need at least 2 participants to start a race!");
+                return;
+            }
+            
+            // In a real implementation, this would redirect to the race page
+            // or trigger the race to start via your PHP backend
+            
+            // For now, just show an alert
+            alert(`Starting race with ${participants.length} participants on ${selectedDifficulty} difficulty!`);
+            
+            // You would typically redirect here:
+            // window.location.href = "race.html";
+        }
+
+        // Leave room
+        function leaveRoom() {
+            if (confirm("Are you sure you want to leave this race room?")) {
+                // In a real implementation, this would disconnect from the server
+                // and redirect to the home page or lobby list
+                
+                // For now, just redirect to the home page
+                window.location.href = "index.html";
+            }
+        }
+
+        // Send chat message
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Clear input
+            chatInput.value = "";
+            
+            // Add message to chat
+            addUserMessage("You", message);
+            
+            // In a real implementation, this would send the message to all participants
+            // via your PHP backend
+        }
+
+        // Add system message to chat
+        function addSystemMessage(message) {
+            const messageElement = document.createElement("div");
+            messageElement.className = "message system-message";
+            messageElement.textContent = message;
+            
+            chatMessages.appendChild(messageElement);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Add user message to chat
+        function addUserMessage(sender, message) {
+            const messageElement = document.createElement("div");
+            messageElement.className = sender === "You" ? "message user-message" : "message other-message";
+            
+            messageElement.innerHTML = `
+                <div class="message-sender">${sender}</div>
+                <div class="message-text">${message}</div>
+            `;
+            
+            chatMessages.appendChild(messageElement);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Update copyright year
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            const footerYear = document.querySelector("footer p");
+            footerYear.textContent = footerYear.textContent.replace("2023", currentYear);
+        }
+
+        // Initialize when the page loads
+        window.addEventListener("load", init);
+    </script>
+</body>
+</html>

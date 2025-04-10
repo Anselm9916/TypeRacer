@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeedType Racer - Word Battle</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="track.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark">
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-keyboard"></i>
+      <span>SpeedType Racer</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="race.html"><i class="fas fa-flag-checkered"></i> Race</a>
+      <a href="word-battle.html" class="active"><i class="fas fa-bolt"></i> Word Battle</a>
+      <a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
+      <a href="stats.html"><i class="fas fa-chart-line"></i> Stats</a>
+      <a href="#"><i class="fas fa-cog"></i> Settings</a>
+    </div>
+    <div class="theme-toggle">
+      <i class="fas fa-moon"></i>
+    </div>
+  </nav>
+
+  <!-- Main Game Area with Sidebar -->
+  <div class="battle-layout">
+    <!-- Lobby Sidebar -->
+    <div class="lobby-sidebar">
+      <div class="room-info">
+        <h3>Room: <span id="roomCode">QVZ6VH</span></h3>
+        <button id="copyRoomCode" class="btn secondary small">
+          <i class="fas fa-copy"></i> Copy
+        </button>
+      </div>
+      
+      <div class="participants-header">
+        <h3><i class="fas fa-users"></i> Players</h3>
+        <span class="participant-count" id="participantCount">1/8</span>
+      </div>
+      
+      <div class="participants-list" id="participantsList">
+        <!-- You (Host) -->
+        <div class="participant-card participant-you participant-host">
+          <div class="participant-avatar">Y</div>
+          <div class="participant-info">
+            <div class="participant-name">You (You)</div>
+            <div class="participant-status">15 WPM</div>
+          </div>
+          <div class="participant-health-bar">
+            <div class="health-fill" style="width: 100%"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Test Controls (for development only) -->
+      <div class="test-controls">
+        <h4>Test Controls</h4>
+        <button id="addRandomUser" class="btn primary small">
+          <i class="fas fa-user-plus"></i> Add Random User
+        </button>
+        <button id="resetUsers" class="btn danger small">
+          <i class="fas fa-trash"></i> Reset Users
+        </button>
+      </div>
+      
+      <!-- Game Controls -->
+      <div class="game-controls sidebar-controls">
+        <button id="startGameBtn" class="btn primary">
+          <i class="fas fa-play"></i> Start Battle
+        </button>
+        <button id="leaveRoomBtn" class="btn danger">
+          <i class="fas fa-sign-out-alt"></i> Leave Room
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Game Content -->
+    <main class="battle-container">
+      <!-- Battle Header with Stats -->
+      <div class="battle-header">
+        <h1>Word Battle</h1>
+        <div class="battle-stats">
+          <div class="stat-item">
+            <i class="fas fa-tachometer-alt"></i>
+            <span id="wpmDisplay">0 WPM</span>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-bullseye"></i>
+            <span id="accuracyDisplay">100% Accuracy</span>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-stopwatch"></i>
+            <span id="timeDisplay">0:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Battle Arena -->
+      <div class="battle-arena">
+        <div class="player-area your-area">
+          <div class="player-info">
+            <div class="player-avatar">Y</div>
+            <div class="player-name">You</div>
+            <div class="player-health">
+              <div class="health-bar">
+                <div class="health-fill" id="yourHealth" style="width: 100%"></div>
+              </div>
+              <span class="health-text">100 HP</span>
+            </div>
+          </div>
+          <div class="player-character">
+            <div class="character-sprite your-sprite">
+              <i class="fas fa-user-ninja fa-3x"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="battle-center">
+          <div class="versus-text">VS</div>
+          <div class="battle-status" id="battleStatus">Waiting for battle to start...</div>
+        </div>
+        
+        <div class="player-area opponent-area">
+          <div class="player-info">
+            <div class="player-avatar">O</div>
+            <div class="player-name">Opponent</div>
+            <div class="player-health">
+              <div class="health-bar">
+                <div class="health-fill" id="opponentHealth" style="width: 100%"></div>
+              </div>
+              <span class="health-text">100 HP</span>
+            </div>
+          </div>
+          <div class="player-character">
+            <div class="character-sprite opponent-sprite">
+              <i class="fas fa-robot fa-3x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Word Display -->
+      <div class="word-display">
+        <div class="current-word" id="currentWord">programming</div>
+        <div class="word-queue">
+          <div class="next-word">language</div>
+          <div class="next-word">computer</div>
+          <div class="next-word">keyboard</div>
+        </div>
+      </div>
+
+      <!-- Typing Area -->
+      <div class="typing-area">
+        <input type="text" id="wordInput" placeholder="Type the word above to attack..." autocomplete="off">
+        <div class="battle-controls">
+          <button id="restartBtn" class="btn primary">
+            <i class="fas fa-redo"></i> Restart Battle
+          </button>
+          <button id="inviteBtn" class="btn secondary">
+            <i class="fas fa-user-plus"></i> Invite Players
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Battle Effects (Hidden initially) -->
+  <div class="battle-effects">
+    <div class="attack-effect" id="yourAttack">
+      <i class="fas fa-bolt"></i>
+    </div>
+    <div class="attack-effect" id="opponentAttack">
+      <i class="fas fa-bolt"></i>
+    </div>
+    <div class="damage-effect" id="yourDamage">-15</div>
+    <div class="damage-effect" id="opponentDamage">-20</div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SpeedType Racer. All rights reserved.</p>
+  </footer>
+
+  <script src="track.js"></script>
+</body>
+</html>

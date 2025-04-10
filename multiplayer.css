@@ -1,0 +1,615 @@
+/* 
+==============================================
+  MULTIPLAYER.CSS
+  Styles for Multiplayer Race Page
+==============================================
+*/
+
+/* GOOGLE FONTS (OPTIONAL) */
+/* If you're already importing fonts in the main index, you can remove or adjust this line. */
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"); */
+
+/* RESET & BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #7dd3fc, #38bdf8);
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* SCROLL BEHAVIOR */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* NAVBAR */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #0c4a6e;
+  }
+  
+  .logo i {
+    margin-right: 0.5rem;
+    font-size: 1.4rem;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-links a {
+    color: #0c4a6e;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  .nav-links a:hover {
+    color: #0369a1;
+  }
+  
+  /* THEME TOGGLE */
+  .theme-toggle-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .theme-toggle {
+    cursor: pointer;
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    color: #0c4a6e;
+    transition: transform 0.3s;
+  }
+  
+  .theme-toggle:hover {
+    transform: scale(1.1);
+  }
+  
+  /* MAIN CONTAINER */
+  .multiplayer-race-container {
+    display: flex;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    gap: 1.5rem;
+    flex: 1;
+  }
+  
+  /* PARTICIPANTS SIDEBAR */
+  .participants-sidebar {
+    width: 320px;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    /* Sticky so it remains in view when scrolling */
+    height: fit-content;
+    position: sticky;
+    top: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  .room-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .room-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #0c4a6e;
+  }
+  
+  .participants-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.5rem;
+  }
+  
+  .participants-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #0c4a6e;
+  }
+  
+  .participant-count {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    color: #0c4a6e;
+  }
+  
+  .participants-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding-right: 0.5rem;
+    max-height: 300px;
+  }
+  
+  /* PARTICIPANT CARD */
+  .participant-card {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 0.5rem;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .participant-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .participant-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #0c4a6e;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  
+  .participant-name {
+    font-weight: 600;
+    color: #0c4a6e;
+    flex: 1;
+  }
+  
+  .participant-status {
+    font-size: 0.9rem;
+    color: #0c4a6e;
+  }
+  
+  .participant-progress {
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  .participant-progress .progress-bar {
+    height: 100%;
+    background-color: #0c4a6e;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+  
+  .participant-you {
+    border: 2px solid #0c4a6e;
+  }
+  
+  .participant-host .participant-status {
+    font-weight: 500;
+  }
+  
+  /* TEST CONTROLS */
+  .test-controls {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .test-controls h4 {
+    color: #0c4a6e;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+  }
+  
+  .test-controls button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* RACE CONTROLS */
+  .race-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .race-controls button {
+    width: 100%;
+  }
+  
+  /* MAIN GAME AREA */
+  .game-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .game-area h1 {
+    text-align: center;
+    color: #0c4a6e;
+    margin-top: 0;
+  }
+  
+  /* RACE TRACK */
+  .race-track {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .finish-line {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #0c4a6e;
+  }
+  
+  .race-track img#car {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 40px;
+  }
+  
+  /* PROGRESS SECTION */
+  .progress-section {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .progress-info p {
+    color: #0c4a6e;
+    font-weight: 500;
+  }
+  
+  .progress-bar-container {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  #progressBar {
+    height: 100%;
+    width: 0;
+    background-color: #0c4a6e;
+    transition: width 0.3s ease;
+  }
+  
+  /* SENTENCE CONTAINER */
+  .sentence-container {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    min-height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    line-height: 1.6;
+    color: #0c4a6e;
+  }
+  
+  .sentence-container span.correct {
+    color: green;
+  }
+  
+  .sentence-container span.incorrect {
+    color: red;
+  }
+  
+  /* TYPING INPUT */
+  #userInput {
+    width: 100%;
+    min-height: 80px;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  #userInput:focus {
+    border-color: #0c4a6e;
+  }
+  
+  /* BUTTONS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  }
+  
+  .btn.primary {
+    background-color: #0c4a6e;
+    color: #fff;
+  }
+  
+  .btn.secondary {
+    background-color: #fff;
+    color: #0c4a6e;
+    border: 1px solid #0c4a6e;
+  }
+  
+  .btn.danger {
+    background-color: #e11d48;
+    color: #fff;
+  }
+  
+  .btn.small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  /* RESTART BUTTON */
+  #restartBtn {
+    align-self: flex-start;
+  }
+  
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #0c4a6e;
+  }
+  
+  /* CUSTOM SCROLLBAR FOR PARTICIPANTS LIST */
+  .participants-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  .participants-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+  .participants-list::-webkit-scrollbar-thumb {
+    background: rgba(12, 74, 110, 0.5);
+    border-radius: 3px;
+  }
+  
+  /* 
+  ==============================================
+    DARK MODE
+  ==============================================
+  */
+  body.dark {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #f1f5f9;
+  }
+  
+  body.dark .navbar,
+  body.dark footer {
+    background-color: rgba(15, 23, 42, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  body.dark .logo,
+  body.dark .nav-links a {
+    color: #f1f5f9;
+  }
+  
+  body.dark .nav-links a:hover {
+    color: #38bdf8;
+  }
+  
+  body.dark .theme-toggle {
+    color: #f1f5f9;
+  }
+  
+  body.dark .participants-sidebar {
+    background-color: rgba(15, 23, 42, 0.5);
+  }
+  
+  body.dark .room-info h3,
+  body.dark .participants-header h3,
+  body.dark .participant-count,
+  body.dark .participant-name,
+  body.dark .participant-status,
+  body.dark .test-controls h4 {
+    color: #f1f5f9;
+  }
+  
+  body.dark .participant-card {
+    background-color: rgba(15, 23, 42, 0.4);
+  }
+  
+  body.dark .participant-avatar {
+    background-color: #38bdf8;
+  }
+  
+  body.dark .participant-progress {
+    background-color: rgba(15, 23, 42, 0.4);
+  }
+  
+  body.dark .participant-progress .progress-bar {
+    background-color: #38bdf8;
+  }
+  
+  body.dark .participant-you {
+    border-color: #38bdf8;
+  }
+  
+  body.dark .test-controls {
+    background-color: rgba(15, 23, 42, 0.4);
+  }
+  
+  body.dark .race-track {
+    background-color: rgba(15, 23, 42, 0.4);
+  }
+  
+  body.dark .finish-line {
+    background-color: #38bdf8;
+  }
+  
+  body.dark .progress-section {
+    background-color: rgba(15, 23, 42, 0.4);
+  }
+  
+  body.dark .progress-info p {
+    color: #f1f5f9;
+  }
+  
+  body.dark .progress-bar-container {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  body.dark #progressBar {
+    background-color: #38bdf8;
+  }
+  
+  body.dark .sentence-container {
+    background-color: rgba(15, 23, 42, 0.4);
+    color: #f1f5f9;
+  }
+  
+  body.dark #userInput {
+    background-color: #1e293b;
+    color: #f1f5f9;
+    border-color: #475569;
+  }
+  
+  body.dark #userInput:focus {
+    border-color: #38bdf8;
+  }
+  
+  body.dark .btn.primary {
+    background-color: #38bdf8;
+    color: #0f172a;
+  }
+  
+  body.dark .btn.secondary {
+    background-color: #1e293b;
+    color: #f1f5f9;
+    border: 1px solid #38bdf8;
+  }
+  
+  body.dark .btn.danger {
+    background-color: #ef4444;
+    color: #fff;
+  }
+  
+  body.dark footer {
+    color: #cbd5e1;
+  }
+  
+  /* Dark Mode Scrollbar */
+  body.dark .participants-list::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.3);
+  }
+  body.dark .participants-list::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.5);
+  }
+  
+  /* MEDIA QUERIES */
+  @media (max-width: 1024px) {
+    .multiplayer-race-container {
+      flex-direction: column-reverse;
+    }
+    .participants-sidebar {
+      width: 100%;
+      position: static;
+      max-width: 100%;
+      margin-bottom: 1rem;
+    }
+    .participants-list {
+      max-height: 200px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .nav-links {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .game-area h1 {
+      font-size: 1.5rem;
+    }
+    #userInput {
+      font-size: 0.9rem;
+    }
+  }
+  

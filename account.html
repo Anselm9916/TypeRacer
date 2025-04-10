@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeedType Racer - My Account</title>
+  <link rel="stylesheet" href="account.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-keyboard"></i>
+      <span class="logo-text">SpeedType Racer</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="race.html"><i class="fas fa-flag-checkered"></i> Race</a>
+      <a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
+      <a href="stats.html"><i class="fas fa-chart-line"></i> Stats</a>
+      <a href="account.html" class="active"><i class="fas fa-user"></i> Account</a>
+    </div>
+    <div class="theme-toggle-wrapper">
+      <button class="theme-toggle">
+        <i class="fas fa-sun"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="account-container">
+    <h1>My Account</h1>
+    
+    <div class="account-content">
+      <!-- Profile Overview -->
+      <div class="profile-overview">
+        <div class="profile-header">
+          <div class="profile-avatar">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div class="profile-info">
+            <h2 id="profileName">Username</h2>
+            <p id="profileEmail">user@example.com</p>
+            <div class="profile-badges">
+              <span class="badge"><i class="fas fa-bolt"></i> Speed Demon</span>
+              <span class="badge"><i class="fas fa-award"></i> 5 Achievements</span>
+              <span class="badge"><i class="fas fa-flag-checkered"></i> 142 Races</span>
+            </div>
+          </div>
+          <button class="btn secondary edit-profile-btn">
+            <i class="fas fa-edit"></i> Edit Profile
+          </button>
+        </div>
+        
+        <div class="profile-stats">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+            <div class="stat-details">
+              <h3>Average Speed</h3>
+              <p class="stat-value">85 WPM</p>
+              <p class="stat-trend positive">
+                <i class="fas fa-arrow-up"></i> 5% from last month
+              </p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <div class="stat-details">
+              <h3>Accuracy</h3>
+              <p class="stat-value">92%</p>
+              <p class="stat-trend positive">
+                <i class="fas fa-arrow-up"></i> 2% from last month
+              </p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="stat-details">
+              <h3>Races Won</h3>
+              <p class="stat-value">37</p>
+              <p class="stat-trend neutral">
+                <i class="fas fa-minus"></i> Same as last month
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Account Settings Tabs -->
+      <div class="account-tabs">
+        <button class="tab-btn active" data-tab="personal">
+          <i class="fas fa-user"></i> Personal Info
+        </button>
+        <button class="tab-btn" data-tab="security">
+          <i class="fas fa-lock"></i> Security
+        </button>
+        <button class="tab-btn" data-tab="preferences">
+          <i class="fas fa-sliders-h"></i> Preferences
+        </button>
+        <button class="tab-btn" data-tab="connected">
+          <i class="fas fa-link"></i> Connected Accounts
+        </button>
+      </div>
+      
+      <div class="account-tab-content">
+        <!-- Personal Info Tab -->
+        <div class="tab-content active" id="personal">
+          <h2>Personal Information</h2>
+          <p class="tab-description">Manage your personal information and how it appears to others.</p>
+          
+          <div class="info-section">
+            <div class="info-row">
+              <div class="info-label">Username</div>
+              <div class="info-value" id="usernameValue">SpeedDemon123</div>
+              <button class="info-edit-btn"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            
+            <div class="info-row">
+              <div class="info-label">Email</div>
+              <div class="info-value" id="emailValue">user@example.com</div>
+              <button class="info-edit-btn"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            
+            <div class="info-row">
+              <div class="info-label">Display Name</div>
+              <div class="info-value" id="displayNameValue">Speed Demon</div>
+              <button class="info-edit-btn"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            
+            <div class="info-row">
+              <div class="info-label">Bio</div>
+              <div class="info-value" id="bioValue">Typing enthusiast who loves to race against others and improve my speed.</div>
+              <button class="info-edit-btn"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            
+            <div class="info-row">
+              <div class="info-label">Member Since</div>
+              <div class="info-value" id="memberSinceValue">January 15, 2025</div>
+            </div>
+          </div>
+          
+          <div class="info-section">
+            <h3>Profile Visibility</h3>
+            <div class="toggle-option">
+              <div class="toggle-label">Show my profile on leaderboards</div>
+              <label class="toggle">
+                <input type="checkbox" id="showOnLeaderboard" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="toggle-option">
+              <div class="toggle-label">Allow others to challenge me to races</div>
+              <label class="toggle">
+                <input type="checkbox" id="allowChallenges" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="toggle-option">
+              <div class="toggle-label">Show my typing statistics publicly</div>
+              <label class="toggle">
+                <input type="checkbox" id="showStats" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Security Tab -->
+        <div class="tab-content" id="security">
+          <h2>Security Settings</h2>
+          <p class="tab-description">Manage your password and account security settings.</p>
+          
+          <div class="info-section">
+            <h3>Change Password</h3>
+            <form class="password-form">
+              <div class="form-group">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" id="currentPassword" placeholder="Enter your current password">
+              </div>
+              
+              <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" placeholder="Enter your new password">
+                <div class="password-strength">
+                  <div class="strength-meter">
+                    <div class="strength-bar" style="width: 70%;"></div>
+                  </div>
+                  <span class="strength-text">Strong</span>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="confirmPassword">Confirm New Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm your new password">
+              </div>
+              
+              <button type="submit" class="btn primary">
+                <i class="fas fa-save"></i> Update Password
+              </button>
+            </form>
+          </div>
+          
+          <div class="info-section">
+            <h3>Two-Factor Authentication</h3>
+            <p class="section-description">Add an extra layer of security to your account by enabling two-factor authentication.</p>
+            
+            <div class="toggle-option">
+              <div class="toggle-label">Enable Two-Factor Authentication</div>
+              <label class="toggle">
+                <input type="checkbox" id="enable2FA">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <button class="btn secondary setup-2fa-btn" disabled>
+              <i class="fas fa-shield-alt"></i> Set Up Two-Factor Authentication
+            </button>
+          </div>
+          
+          <div class="info-section">
+            <h3>Login Sessions</h3>
+            <p class="section-description">These are the devices that are currently logged into your account.</p>
+            
+            <div class="session-list">
+              <div class="session-item current">
+                <div class="session-info">
+                  <div class="session-device">
+                    <i class="fas fa-laptop"></i> Chrome on Windows
+                  </div>
+                  <div class="session-details">
+                    <span class="session-location">New York, USA</span>
+                    <span class="session-time">Current Session</span>
+                  </div>
+                </div>
+                <button class="btn secondary small">This Device</button>
+              </div>
+              
+              <div class="session-item">
+                <div class="session-info">
+                  <div class="session-device">
+                    <i class="fas fa-mobile-alt"></i> Safari on iPhone
+                  </div>
+                  <div class="session-details">
+                    <span class="session-location">New York, USA</span>
+                    <span class="session-time">Last active: 2 hours ago</span>
+                  </div>
+                </div>
+                <button class="btn danger small">Log Out</button>
+              </div>
+            </div>
+            
+            <button class="btn danger logout-all-btn">
+              <i class="fas fa-sign-out-alt"></i> Log Out of All Devices
+            </button>
+          </div>
+        </div>
+        
+        <!-- Preferences Tab -->
+        <div class="tab-content" id="preferences">
+          <h2>Account Preferences</h2>
+          <p class="tab-description">Customize your typing experience and notification settings.</p>
+          
+          <div class="info-section">
+            <h3>Typing Preferences</h3>
+            
+            <div class="preference-option">
+              <div class="preference-label">Default Difficulty</div>
+              <div class="preference-control">
+                <select id="defaultDifficulty">
+                  <option value="easy">Easy</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="hard">Hard</option>
+                  <option value="expert">Expert</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="preference-option">
+              <div class="preference-label">Sound Effects</div>
+              <div class="preference-control">
+                <label class="toggle">
+                  <input type="checkbox" id="soundEffects" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="preference-option">
+              <div class="preference-label">Auto Capitalization</div>
+              <div class="preference-control">
+                <label class="toggle">
+                  <input type="checkbox" id="autoCapitalization" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="preference-option">
+              <div class="preference-label">Font Size</div>
+              <div class="preference-control slider-control">
+                <input type="range" min="12" max="24" value="16" class="slider" id="fontSizeSlider">
+                <span id="fontSizeValue">16px</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="info-section">
+            <h3>Notification Settings</h3>
+            
+            <div class="preference-option">
+              <div class="preference-label">Email Notifications</div>
+              <div class="preference-control">
+                <label class="toggle">
+                  <input type="checkbox" id="emailNotifications" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="preference-option">
+              <div class="preference-label">Race Invitations</div>
+              <div class="preference-control">
+                <label class="toggle">
+                  <input type="checkbox" id="raceInvitations" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="preference-option">
+              <div class="preference-label">Achievement Alerts</div>
+              <div class="preference-control">
+                <label class="toggle">
+                  <input type="checkbox" id="achievementAlerts" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="preference-option">
+              <div class="preference-label">Weekly Progress Reports</div>
+              <div class="preference-control">
+                <label class="toggle">
+                  <input type="checkbox" id="weeklyReports">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="info-section">
+            <h3>Theme Settings</h3>
+            
+            <div class="theme-options">
+              <div class="theme-option">
+                <input type="radio" id="themeLight" name="theme" value="light" checked>
+                <label for="themeLight" class="theme-card light">
+                  <div class="theme-preview light-preview"></div>
+                  <span>Light</span>
+                </label>
+              </div>
+              
+              <div class="theme-option">
+                <input type="radio" id="themeDark" name="theme" value="dark">
+                <label for="themeDark" class="theme-card dark">
+                  <div class="theme-preview dark-preview"></div>
+                  <span>Dark</span>
+                </label>
+              </div>
+              
+              <div class="theme-option">
+                <input type="radio" id="themeSystem" name="theme" value="system">
+                <label for="themeSystem" class="theme-card system">
+                  <div class="theme-preview system-preview"></div>
+                  <span>System</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <button class="btn primary save-preferences-btn">
+            <i class="fas fa-save"></i> Save Preferences
+          </button>
+        </div>
+        
+        <!-- Connected Accounts Tab -->
+        <div class="tab-content" id="connected">
+          <h2>Connected Accounts</h2>
+          <p class="tab-description">Manage third-party accounts connected to your SpeedType Racer profile.</p>
+          
+          <div class="info-section">
+            <div class="connected-account">
+              <div class="account-logo google">
+                <i class="fab fa-google"></i>
+              </div>
+              <div class="account-details">
+                <h3>Google</h3>
+                <p class="account-status connected">Connected as user@gmail.com</p>
+              </div>
+              <button class="btn danger small">Disconnect</button>
+            </div>
+            
+            <div class="connected-account">
+              <div class="account-logo facebook">
+                <i class="fab fa-facebook-f"></i>
+              </div>
+              <div class="account-details">
+                <h3>Facebook</h3>
+                <p class="account-status not-connected">Not connected</p>
+              </div>
+              <button class="btn secondary small">Connect</button>
+            </div>
+            
+            <div class="connected-account">
+              <div class="account-logo twitter">
+                <i class="fab fa-twitter"></i>
+              </div>
+              <div class="account-details">
+                <h3>Twitter</h3>
+                <p class="account-status not-connected">Not connected</p>
+              </div>
+              <button class="btn secondary small">Connect</button>
+            </div>
+            
+            <div class="connected-account">
+              <div class="account-logo discord">
+                <i class="fab fa-discord"></i>
+              </div>
+              <div class="account-details">
+                <h3>Discord</h3>
+                <p class="account-status not-connected">Not connected</p>
+              </div>
+              <button class="btn secondary small">Connect</button>
+            </div>
+          </div>
+          
+          <div class="info-section">
+            <h3>Data Sharing</h3>
+            <p class="section-description">Control how your data is shared with connected services.</p>
+            
+            <div class="toggle-option">
+              <div class="toggle-label">Share my typing statistics with connected accounts</div>
+              <label class="toggle">
+                <input type="checkbox" id="shareStats" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="toggle-option">
+              <div class="toggle-label">Allow connected accounts to post achievements on my behalf</div>
+              <label class="toggle">
+                <input type="checkbox" id="allowPosts">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Danger Zone -->
+      <div class="danger-zone">
+        <h3>Danger Zone</h3>
+        <p>These actions are irreversible. Please proceed with caution.</p>
+        
+        <div class="danger-actions">
+          <button class="btn danger delete-account-btn">
+            <i class="fas fa-trash-alt"></i> Delete Account
+          </button>
+          <button class="btn danger reset-stats-btn">
+            <i class="fas fa-eraser"></i> Reset All Statistics
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SpeedType Racer. All rights reserved.</p>
+  </footer>
+
+  <script src="account.js"></script>
+</body>
+</html>
+
